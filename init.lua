@@ -1,32 +1,28 @@
 --[[ TODO
--- Go to definition
+-- Go to definition -> DONE. already integrated with telescope
 -- Get the file extension plugin???
 -- Get TMUX or terminal plugin
 -- download vim be good to improve vim skills
+-- enable dragging and dropping of copied text up and down like you could do in vscode
 -- Setup the debugger
+--    https://medium.com/@suyash10581108/go-lang-debugging-simplified-in-neovim-with-delve-and-dap-760bb950305d
 -- make a repository for my nvim setup so it's tracked
 -- Setup a rest client
--- Setup git client (fugitive)
--- Set up telescope search -> DONE already setup
--- Set up the LSP
+-- Setup git client (fugitive vs lazygit)
 -- Setup trouble from (folke)
 -- setup gitlens
 -- "l" key is mad slow
 -- rest client can chain and compare http requests together
 -- make everything exactly how I want it
--- install python lsp -> DONE
--- setup keybinds for comments
 -- visual block mode for commenting
 -- Setup undo tree
 -- https://www.youtube.com/watch?v=-ybCiHPWKNA 1:00:00
 -- -------------------
--- Set <space> as the leader key
 -- See `:help mapleader`
 -- ]]
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = false
 
@@ -35,6 +31,8 @@ vim.g.have_nerd_font = false
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- Set the background color
+vim.opt.background = "dark"
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, to help with jumping.
@@ -110,6 +108,8 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uick fix list" })
+vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uick fix list" })
+
 --example bind to lua function
 --[[vim.keymap.set("i", "jk", function()
 	print("Elian get's Neovim")
@@ -672,7 +672,6 @@ require("lazy").setup({
 
 				-- For an understanding of why these mappings were
 				-- chosen, you will need to read `:help ins-completion`
-				--
 				-- No, but seriously. Please read `:help ins-completion`, it is really good!
 				mapping = cmp.mapping.preset.insert({
 					-- Select the [n]ext item
